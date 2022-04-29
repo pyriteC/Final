@@ -4,27 +4,28 @@ import java.awt.Color;
 
 public class Cell
 {
-	private String number ;
+	private int number ;
 	private Color color;
 
 	
 	public Cell()
 	{
-		setNumber("");
-		setColor(new Color(255,255,255));
+		number = 0;
+		color = new Color(255,255,255);
 	}
 	
-	public Cell( String number)
+	public Cell( int number)
 	{
-		this.setNumber(number);
+		this.number = number;
+		color = new Color(255,255,255);
 	}
 
-	public String getNumber()
+	public int getNumber()
 	{
 		return number;
 	}
 
-	public void setNumber(String number)
+	public void setNumber(int number)
 	{
 		this.number = number;
 	}
@@ -37,6 +38,31 @@ public class Cell
 	public void setColor(Color color)
 	{
 		this.color = color;
+	}
+	
+	public String getNumbAsString()
+	{
+		if (number == 0)
+		{
+			return "";
+		}
+		else
+		{
+			 
+			return Integer.toString(number);
+		}
+	}
+	
+	public void randNum()
+	{
+		if (number == 0)
+		{
+			int condition = (int) (Math.random() * 7);
+			if (condition == 0)
+			{
+				number = 2;
+			}
+		}
 	}
 	
 	
