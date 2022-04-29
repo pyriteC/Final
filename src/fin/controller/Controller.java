@@ -51,7 +51,82 @@ public class Controller
 							top ++;
 						}
 					}
+				}
+			}
+		}
+	}
+	
+	public void down()
+	{
+		int bottom = cells.length-1;
+		for (int col = 0; col < cells.length; col ++)
+		{
+			for (int row = cells.length-1; row >=0; row++)
+			{
+				if ( cells[row][col].getNumber() !=0)
+				{
+					int currentNumber = cells[row][col].getNumber();
+					cells[row][col].setNumber(0);
+					if (row <cells.length && cells[bottom + 1] [col].getNumber() == currentNumber)
+					{
+						cells[bottom +1][col].setNumber(currentNumber * 2);
+					}
+					else 
+					{
+						cells[bottom][col].setNumber(currentNumber);
+					}
+					bottom --;
 					
+				}
+			}
+		}
+	}
+	
+	public void left()
+	{
+		int LEdge = 0;
+		for (int row = 0; row < cells.length; row++)
+		{
+			for (int col = 0; col < cells.length; col++)
+			{
+				if (cells[row][col].getNumber() != 0)
+				{
+					int currentNumber = cells[row][col].getNumber();
+					cells[row][col].setNumber(0);
+					if (col > 0 && cells[row][LEdge -1].getNumber() == currentNumber)
+					{
+						cells[row][LEdge -1].setNumber(currentNumber * 2);
+					}
+					else
+					{
+						cells[row][LEdge].setNumber(currentNumber);
+					}
+					LEdge ++;
+				}
+			}
+		}
+	}
+	
+	public void right()
+	{
+		int REdge = cells.length -1;
+		for (int row = 0; row < cells.length; row++)
+		{
+			for (int col = cells.length-1; col >= 0; col++)
+			{
+				if (cells[row][col].getNumber() != 0)
+				{
+					int currentNumber = cells[row][col].getNumber();
+					cells[row][col].setNumber(0);
+					if (col <cells.length && cells[row][REdge + 1].getNumber() == currentNumber)
+					{
+						cells[row][REdge + 1].setNumber(currentNumber * 2);
+					}
+					else 
+					{
+						cells[row][REdge].setNumber(currentNumber);
+					}
+					REdge --;
 				}
 			}
 		}
