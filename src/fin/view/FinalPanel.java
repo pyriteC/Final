@@ -2,6 +2,8 @@ package fin.view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -12,7 +14,7 @@ import fin.controller.Controller;
 
 
 
-public class FinalPanel extends JPanel
+public class FinalPanel extends JPanel implements KeyListener
 {
 	private Controller app;
 	private SpringLayout layout;
@@ -72,4 +74,60 @@ public class FinalPanel extends JPanel
 			}
 		}
 	}
+
+	@Override
+	public void keyPressed(KeyEvent e)
+	{
+		int code = e.getKeyCode();
+		
+		switch (code)
+		{
+			case KeyEvent.VK_W:
+			{
+				System.out.println("up");
+				app.up();
+				updateNumberPanel();
+
+				break;
+			}
+			case KeyEvent.VK_S:
+			{
+				app.down();
+				updateNumberPanel();
+				System.out.println("up");
+				break;
+			}
+			case KeyEvent.VK_A:
+			{
+				app.left();
+				updateNumberPanel();
+				System.out.println("up");
+				break;
+			}
+			case KeyEvent.VK_D:
+			{
+				app.right();
+				updateNumberPanel();
+				System.out.println("up");
+				break;
+			}
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }
