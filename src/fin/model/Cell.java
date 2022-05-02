@@ -12,6 +12,7 @@ public class Cell
 	{
 		number = 0;
 		color = new Color(255,255,255);
+		randNum();
 	}
 	
 	public Cell( int number)

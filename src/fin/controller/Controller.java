@@ -1,10 +1,13 @@
 package fin.controller;
 
 import fin.model.Cell;
+import fin.view.FinalFrame;
 
 public class Controller
 {
-	Cell [][] cells =  new Cell[4][4];
+
+	private Cell [][] cells =  new Cell[4][4];
+	private FinalFrame finalFrame;
 	public Controller()
 	{
 		for (int index = 0; index < cells.length; index++)
@@ -15,6 +18,7 @@ public class Controller
 				cells[index][inIndex] = temp;
 			}
 		}
+		finalFrame = new FinalFrame(this);
 	}
 	
 	public static void start()
@@ -50,6 +54,7 @@ public class Controller
 							cells[top][col].setNumber(currentNumber);
 							top ++;
 						}
+						cells[row][col].randNum();
 					}
 				}
 			}
@@ -76,7 +81,7 @@ public class Controller
 						cells[bottom][col].setNumber(currentNumber);
 					}
 					bottom --;
-					
+					cells[row][col].randNum();
 				}
 			}
 		}
@@ -102,6 +107,7 @@ public class Controller
 						cells[row][LEdge].setNumber(currentNumber);
 					}
 					LEdge ++;
+					cells[row][col].randNum();
 				}
 			}
 		}
@@ -127,8 +133,25 @@ public class Controller
 						cells[row][REdge].setNumber(currentNumber);
 					}
 					REdge --;
+					cells[row][col].randNum();
 				}
 			}
 		}
+		
+	}
+	
+	public String[][] getCells()
+	{
+		String[][] numFromCells = new String[4][4];
+		for (int row = 0; row< cells.length; row++)
+		{
+			for(int col = 0; col < cells.length; col++)
+			{
+				numFromCells[row][col] = cells[row][col].getNumbAsString();
+			}
+		}
+		
+		
+		return numFromCells;
 	}
 }

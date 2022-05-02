@@ -22,10 +22,11 @@ public class FinalFrame extends JFrame
 	private void setupFrame()
 	{
 		this.setContentPane(panel);
-		this.setTitle("My third GUI project wow");
+		this.setTitle("2048");
 		this.setSize(800, 600);
 		this.setResizable(false);
 		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
 
