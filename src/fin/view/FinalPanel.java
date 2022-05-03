@@ -14,24 +14,25 @@ import fin.controller.Controller;
 
 
 
-public class FinalPanel extends JPanel implements KeyListener
+public class FinalPanel extends JPanel 
 {
 	private Controller app;
 	private SpringLayout layout;
 	private JPanel numberPanel;
+	private KeyListener listener;
 	
 	public FinalPanel(Controller app)
 	{
 		super();
 		this.app = app;
-		
+		listener = new MyKeyListener();
 		layout = new SpringLayout();
 		numberPanel = new JPanel(new GridLayout(4,4));
+		setFocusable(true);
 
 		
+		addKeyListener(listener);
 		updateNumberPanel();
-		
-		
 		setupPanel();
 		setupListeners();
 		setupLayout();
@@ -75,13 +76,15 @@ public class FinalPanel extends JPanel implements KeyListener
 		}
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e)
+	public class MyKeyListener implements KeyListener
 	{
-		int code = e.getKeyCode();
-		
-		switch (code)
+		@Override
+		public void keyPressed(KeyEvent e)
 		{
+			int code = e.getKeyCode();
+
+			switch (code)
+			{
 			case KeyEvent.VK_W:
 			{
 				System.out.println("up");
@@ -94,40 +97,40 @@ public class FinalPanel extends JPanel implements KeyListener
 			{
 				app.down();
 				updateNumberPanel();
-				System.out.println("up");
+				System.out.println("down");
 				break;
 			}
 			case KeyEvent.VK_A:
 			{
 				app.left();
 				updateNumberPanel();
-				System.out.println("up");
+				System.out.println("left");
 				break;
 			}
 			case KeyEvent.VK_D:
 			{
 				app.right();
 				updateNumberPanel();
-				System.out.println("up");
+				System.out.println("right");
 				break;
 			}
+			}
+
 		}
-		
-	}
 
-	@Override
-	public void keyReleased(KeyEvent e)
-	{
-		// TODO Auto-generated method stub
-		
-	}
+		@Override
+		public void keyReleased(KeyEvent e)
+		{
+			// TODO Auto-generated method stub
 
-	@Override
-	public void keyTyped(KeyEvent e)
-	{
-		// TODO Auto-generated method stub
-		
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e)
+		{
+			// TODO Auto-generated method stub
+
+		}
+
 	}
-	
-	
 }

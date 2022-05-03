@@ -33,29 +33,20 @@ public class Controller
 		{
 			for ( int row = 0; row < cells[0].length; row++)
 			{
-				if (!(cells[row][col].getNumber() == 0))
+				if ( cells[row][col].getNumber() !=0)
 				{
 					int currentNumber = cells[row][col].getNumber();
 					cells[row][col].setNumber(0);
-					if(row ==0)
+					if ( top > 0 && cells[top - 1][col].getNumber() == currentNumber)
 					{
-					cells[top][col].setNumber(currentNumber);
+						cells[top-1][col].setNumber(currentNumber * 2);
+					}
+					else 
+					{
+						cells[top][col].setNumber(currentNumber);
+					}
 					top ++;
-					}
-					if(row != 0)
-					{
-						if(cells[top-1][col].getNumber() == currentNumber)
-						{
-							cells[top - 1][col].setNumber(currentNumber*2);
-							top ++;
-						}
-						else
-						{
-							cells[top][col].setNumber(currentNumber);
-							top ++;
-						}
-						cells[row][col].randNum();
-					}
+					cells[row][col].randNum();
 				}
 			}
 		}
@@ -66,13 +57,13 @@ public class Controller
 		int bottom = cells.length-1;
 		for (int col = 0; col < cells.length; col ++)
 		{
-			for (int row = cells.length-1; row >=0; row++)
+			for (int row = cells.length-1; row >=0; row--)
 			{
 				if ( cells[row][col].getNumber() !=0)
 				{
 					int currentNumber = cells[row][col].getNumber();
 					cells[row][col].setNumber(0);
-					if (row <cells.length && cells[bottom + 1] [col].getNumber() == currentNumber)
+					if (bottom <cells.length-1 && cells[bottom + 1] [col].getNumber() == currentNumber)
 					{
 						cells[bottom +1][col].setNumber(currentNumber * 2);
 					}
@@ -98,7 +89,7 @@ public class Controller
 				{
 					int currentNumber = cells[row][col].getNumber();
 					cells[row][col].setNumber(0);
-					if (col > 0 && cells[row][LEdge -1].getNumber() == currentNumber)
+					if (LEdge > 0 && cells[row][LEdge -1].getNumber() == currentNumber)
 					{
 						cells[row][LEdge -1].setNumber(currentNumber * 2);
 					}
@@ -118,13 +109,13 @@ public class Controller
 		int REdge = cells.length -1;
 		for (int row = 0; row < cells.length; row++)
 		{
-			for (int col = cells.length-1; col >= 0; col++)
+			for (int col = cells.length-1; col >= 0; col--)
 			{
 				if (cells[row][col].getNumber() != 0)
 				{
 					int currentNumber = cells[row][col].getNumber();
 					cells[row][col].setNumber(0);
-					if (col <cells.length && cells[row][REdge + 1].getNumber() == currentNumber)
+					if (REdge <cells.length-1 && cells[row][REdge + 1].getNumber() == currentNumber)
 					{
 						cells[row][REdge + 1].setNumber(currentNumber * 2);
 					}
