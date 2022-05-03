@@ -90,6 +90,7 @@ public class FinalPanel extends JPanel
 				System.out.println("up");
 				app.up();
 				updateNumberPanel();
+				repaint();
 
 				break;
 			}
@@ -113,6 +114,10 @@ public class FinalPanel extends JPanel
 				updateNumberPanel();
 				System.out.println("right");
 				break;
+			}
+			case KeyEvent.VK_SPACE:
+			{
+				app.test();
 			}
 			}
 

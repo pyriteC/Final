@@ -28,9 +28,10 @@ public class Controller
 	
 	public void up() 
 	{
-		int top = 0;
+		int top ;
 		for(int col = 0; col < cells.length; col++)
 		{
+			top = 0;
 			for ( int row = 0; row < cells[0].length; row++)
 			{
 				if ( cells[row][col].getNumber() !=0)
@@ -54,9 +55,10 @@ public class Controller
 	
 	public void down()
 	{
-		int bottom = cells.length-1;
+		int bottom;
 		for (int col = 0; col < cells.length; col ++)
 		{
+			bottom = cells.length-1;
 			for (int row = cells.length-1; row >=0; row--)
 			{
 				if ( cells[row][col].getNumber() !=0)
@@ -80,9 +82,10 @@ public class Controller
 	
 	public void left()
 	{
-		int LEdge = 0;
+		int LEdge ;
 		for (int row = 0; row < cells.length; row++)
 		{
+			LEdge = 0;
 			for (int col = 0; col < cells.length; col++)
 			{
 				if (cells[row][col].getNumber() != 0)
@@ -106,11 +109,12 @@ public class Controller
 	
 	public void right()
 	{
-		int REdge = cells.length -1;
+		int REdge ;
 		for (int row = 0; row < cells.length; row++)
 		{
 			for (int col = cells.length-1; col >= 0; col--)
 			{
+				REdge = cells.length -1;
 				if (cells[row][col].getNumber() != 0)
 				{
 					int currentNumber = cells[row][col].getNumber();
@@ -144,5 +148,16 @@ public class Controller
 		
 		
 		return numFromCells;
+	}
+	public void test()
+	{
+		for (int row = 0; row< cells.length; row++)
+		{
+			for(int col = 0; col < cells.length; col++)
+			{
+				System.out.print(cells[row][col].getNumber());
+			}
+			System.out.print("\n");
+		}
 	}
 }
