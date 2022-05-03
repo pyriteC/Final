@@ -47,8 +47,8 @@ public class Controller
 						cells[top][col].setNumber(currentNumber);
 					}
 					top ++;
-					cells[row][col].randNum();
 				}
+				cells[row][col].randNum();
 			}
 		}
 	}
@@ -74,8 +74,9 @@ public class Controller
 						cells[bottom][col].setNumber(currentNumber);
 					}
 					bottom --;
-					cells[row][col].randNum();
+					
 				}
+				cells[row][col].randNum();
 			}
 		}
 	}
@@ -101,8 +102,8 @@ public class Controller
 						cells[row][LEdge].setNumber(currentNumber);
 					}
 					LEdge ++;
-					cells[row][col].randNum();
 				}
+				cells[row][col].randNum();
 			}
 		}
 	}
@@ -112,9 +113,9 @@ public class Controller
 		int REdge ;
 		for (int row = 0; row < cells.length; row++)
 		{
+			REdge = cells.length -1;
 			for (int col = cells.length-1; col >= 0; col--)
 			{
-				REdge = cells.length -1;
 				if (cells[row][col].getNumber() != 0)
 				{
 					int currentNumber = cells[row][col].getNumber();
@@ -128,8 +129,9 @@ public class Controller
 						cells[row][REdge].setNumber(currentNumber);
 					}
 					REdge --;
-					cells[row][col].randNum();
+					
 				}
+				cells[row][col].randNum();
 			}
 		}
 		

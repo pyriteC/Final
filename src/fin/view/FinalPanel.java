@@ -60,8 +60,9 @@ public class FinalPanel extends JPanel
 	}
 	private void updateNumberPanel()
 	{
-		numberPanel = new JPanel(new GridLayout(4,4));
-	
+//		numberPanel = new JPanel(new GridLayout(4,4));
+		numberPanel.removeAll();
+		numberPanel.setLayout(new GridLayout(4,4));
 		String[][] cellNumbs = app.getCells();
 		JButton [][] cells = new JButton[4][4];
 		for (int row = 0; row< cells.length; row++)
@@ -69,11 +70,14 @@ public class FinalPanel extends JPanel
 			for(int col = 0; col < cells.length; col++)
 			{
 				JButton temp = new JButton(cellNumbs[row][col]);
-				cells[row][col] = temp;
-				numberPanel.add(cells[row][col]);
+				//cells[row][col] = temp;
+				numberPanel.add(temp);
+				
 				
 			}
 		}
+		numberPanel.revalidate();
+		numberPanel.repaint();
 	}
 
 	public class MyKeyListener implements KeyListener
