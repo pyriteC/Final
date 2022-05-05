@@ -16,11 +16,18 @@ import fin.controller.Controller;
 
 public class FinalPanel extends JPanel 
 {
+	/** the controller*/
 	private Controller app;
+	/** the layout*/
 	private SpringLayout layout;
+	/**the panel that stores the numbers*/
 	private JPanel numberPanel;
+	/** the instance of keyListener that gets the buttons and calls the methods when pressed*/
 	private KeyListener listener;
 	
+	/**the constructor that initializes everything and calls the helper methods
+	 * @param the controller
+	 */
 	public FinalPanel(Controller app)
 	{
 		super();
@@ -34,11 +41,12 @@ public class FinalPanel extends JPanel
 		addKeyListener(listener);
 		updateNumberPanel();
 		setupPanel();
-		setupListeners();
 		setupLayout();
 		
 	}
-	
+	/**
+	 * sets up panel
+	 */
 	private void setupPanel()
 	{
 		this.setBackground(new Color(200, 150, 50 ));
@@ -46,11 +54,9 @@ public class FinalPanel extends JPanel
 		this.add(numberPanel);
 	}
 	
-	private void setupListeners()
-	{
-		
-	}
-	
+	/**
+	 * sets up layout
+	 */
 	private void setupLayout()
 	{
 		layout.putConstraint(SpringLayout.NORTH, numberPanel, 50, SpringLayout.NORTH, this);
@@ -58,6 +64,10 @@ public class FinalPanel extends JPanel
 		layout.putConstraint(SpringLayout.SOUTH, numberPanel, -10, SpringLayout.SOUTH, this);
 		layout.putConstraint(SpringLayout.EAST, numberPanel, -200, SpringLayout.EAST, this);
 	}
+	
+	/**
+	 * updates the number panel to the current version
+	 */
 	private void updateNumberPanel()
 	{
 //		numberPanel = new JPanel(new GridLayout(4,4));
@@ -80,9 +90,18 @@ public class FinalPanel extends JPanel
 		numberPanel.repaint();
 	}
 
+	/**
+	 * 
+	 * @author jcla2343
+	 * its a class that implements keyListeners to use the keyboard inputs 
+	 */
 	public class MyKeyListener implements KeyListener
 	{
 		@Override
+		/**
+		 * calls the different methods based on what button is pressed 
+		 * @param e is the key pressed 
+		 */
 		public void keyPressed(KeyEvent e)
 		{
 			int code = e.getKeyCode();

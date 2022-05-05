@@ -7,10 +7,15 @@ import fin.view.*;
 
 public class FinalFrame extends JFrame
 {
-
+	/** the controller */
 	private Controller app;
+	/** the panel*/
 	private FinalPanel panel;
 	
+	/**
+	 * creates the frame with the controller
+	 * @param app is the controller
+	 */
 	public FinalFrame(Controller app)
 	{
 		super();
@@ -19,6 +24,9 @@ public class FinalFrame extends JFrame
 		setupFrame();
 	}
 	
+	/**
+	 * sets up the frame
+	 */
 	private void setupFrame()
 	{
 		this.setContentPane(panel);

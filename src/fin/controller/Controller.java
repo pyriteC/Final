@@ -5,9 +5,15 @@ import fin.view.FinalFrame;
 
 public class Controller
 {
-
+	/** a 2D array of Cell objects used to store the information of where the numbers are */
 	private Cell [][] cells =  new Cell[4][4];
+	
+	/** the frame */
 	private FinalFrame finalFrame;
+	
+	/**
+	 * fills all the cells of cells and initializes the frame
+	 */
 	public Controller()
 	{
 		for (int index = 0; index < cells.length; index++)
@@ -21,11 +27,13 @@ public class Controller
 		finalFrame = new FinalFrame(this);
 	}
 	
-	public static void start()
-	{
-		
-	}
-	
+	/**
+	 * does mostly nothing but the runner needs it so it shall stay 
+	 */
+
+	/**
+	 * is called when the up button is pressed. it moves all the numbers in the cells to the top and combines like numbers. it also randomly places numbers in the empty cells.
+	 */
 	public void up() 
 	{
 		int top ;
@@ -52,7 +60,9 @@ public class Controller
 			}
 		}
 	}
-	
+	/**
+	 * is called when the up down is pressed. it moves all the numbers in the cells to the bottom and combines like numbers. it also randomly places numbers in the empty cells.
+	 */
 	public void down()
 	{
 		int bottom;
@@ -81,6 +91,9 @@ public class Controller
 		}
 	}
 	
+	/**
+	 * is called when the left button is pressed. it moves all the numbers in the cells to the left and combines like numbers. it also randomly places numbers in the empty cells.
+	 */
 	public void left()
 	{
 		int LEdge ;
@@ -108,6 +121,9 @@ public class Controller
 		}
 	}
 	
+	/**
+	 * is called when the up right is pressed. it moves all the numbers in the cells to the right and combines like numbers. it also randomly places numbers in the empty cells.
+	 */
 	public void right()
 	{
 		int REdge ;
@@ -137,6 +153,10 @@ public class Controller
 		
 	}
 	
+	/**
+	 * grabs the cells 2D array
+	 * @return the 2D array of Cells cells
+	 */
 	public String[][] getCells()
 	{
 		String[][] numFromCells = new String[4][4];
@@ -151,6 +171,10 @@ public class Controller
 		
 		return numFromCells;
 	}
+	
+	/** 
+	 * prints the array in the terminal to test when Panel isn't working 
+	 */
 	public void test()
 	{
 		for (int row = 0; row< cells.length; row++)
