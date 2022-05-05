@@ -24,7 +24,7 @@ public class Controller
 				cells[index][inIndex] = temp;
 			}
 		}
-		finalFrame = new FinalFrame(this);
+		setFinalFrame(new FinalFrame(this));
 	}
 	
 	/**
@@ -185,5 +185,15 @@ public class Controller
 			}
 			System.out.print("\n");
 		}
+	}
+
+	public FinalFrame getFinalFrame()
+	{
+		return finalFrame;
+	}
+
+	public void setFinalFrame(FinalFrame finalFrame)
+	{
+		this.finalFrame = finalFrame;
 	}
 }

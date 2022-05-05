@@ -27,14 +27,14 @@ public class TestControler
 	}
 
 	@Test
-	void testBuildPokedexText()
+	void testCells()
 	{
-		assertTrue(testedController != null, "Can't be null");
+		assertTrue(testedController.getCells() != null, "Can't be null");
 	}
 
 	@Test
-	void testGetPokemonData()
+	void testFrame()
 	{
-		assertEquals("Description", testedController.toString(), "Words match");
+		assertTrue(testedController.getFinalFrame() != null);
 	}
 }
