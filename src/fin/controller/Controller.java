@@ -1,5 +1,7 @@
 package fin.controller;
 
+import java.awt.Color;
+
 import fin.model.Cell;
 import fin.view.FinalFrame;
 
@@ -170,6 +172,20 @@ public class Controller
 		
 		
 		return numFromCells;
+	}
+	
+	public Color[][] getColors()
+	{
+		Color[][] colorFromCells = new Color[4][4];
+		for (int row = 0; row< cells.length; row++)
+		{
+			for(int col = 0; col < cells.length; col++)
+			{
+				colorFromCells[row][col] = cells[row][col].getColor();
+			}
+		}
+		
+		return colorFromCells;
 	}
 	
 	/** 

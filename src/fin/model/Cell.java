@@ -1,11 +1,14 @@
 package fin.model;
 
 import java.awt.Color;
+import java.util.HashMap;
 
 public class Cell
 {
+	/** the number for the cell*/
 	private int number ;
-	private Color color;
+	/** the color for the cell that is gotten from the number*/
+	private HashMap <Integer,Color> color;
 
 	/**
 	 * basic constructor that sets number to 0 and color to white 
@@ -13,7 +16,19 @@ public class Cell
 	public Cell()
 	{
 		number = 0;
-		color = new Color(255,255,255);
+		color = new HashMap<Integer,Color>();
+		color.put(0,Color.white);
+		color.put(2,Color.white);
+		color.put(4,Color.yellow);
+		color.put(8,Color.orange);
+		color.put(16,Color.red);
+		color.put(32,Color.magenta);
+		color.put(64,Color.pink);
+		color.put(128,Color.blue);
+		color.put(256,Color.cyan);
+		color.put(512,Color.green);
+		color.put(1024,Color.yellow);
+		color.put(2048,Color.white);
 		randNum();
 	}
 	/**
@@ -23,7 +38,19 @@ public class Cell
 	public Cell( int number)
 	{
 		this.number = number;
-		color = new Color(255,255,255);
+		color = new HashMap<Integer,Color>();
+		color.put(0,Color.white);
+		color.put(2,Color.white);
+		color.put(4,Color.yellow);
+		color.put(8,Color.orange);
+		color.put(16,Color.red);
+		color.put(32,Color.magenta);
+		color.put(64,Color.pink);
+		color.put(128,Color.blue);
+		color.put(256,Color.cyan);
+		color.put(512,Color.green);
+		color.put(1024,Color.yellow);
+		color.put(2048,Color.white);
 	}
 
 	
@@ -39,14 +66,9 @@ public class Cell
 
 	public Color getColor()
 	{
-		return color;
+		return color.get(number);
 	}
 
-	public void setColor(Color color)
-	{
-		this.color = color;
-	}
-	
 	/**
 	 * gets the numbers as a string and returns 0 as empty String  
 	 * @return the numbers as a string and returns 0 as empty String  

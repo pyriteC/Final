@@ -74,12 +74,15 @@ public class FinalPanel extends JPanel
 		numberPanel.removeAll();
 		numberPanel.setLayout(new GridLayout(4,4));
 		String[][] cellNumbs = app.getCells();
+		Color[][] cellColors = app.getColors();
 		JButton [][] cells = new JButton[4][4];
 		for (int row = 0; row< cells.length; row++)
 		{
 			for(int col = 0; col < cells.length; col++)
 			{
 				JButton temp = new JButton(cellNumbs[row][col]);
+				temp.setOpaque(true);
+				temp.setBackground(cellColors[row][col]);
 				//cells[row][col] = temp;
 				numberPanel.add(temp);
 				
