@@ -24,6 +24,10 @@ public class FinalPanel extends JPanel
 	private JPanel numberPanel;
 	/** the instance of keyListener that gets the buttons and calls the methods when pressed*/
 	private KeyListener listener;
+	/** the button to save data*/
+	private JButton saveButton;
+	/** the button to load the presaved data*/
+	private JButton loadButton;
 	
 	/**the constructor that initializes everything and calls the helper methods
 	 * @param the controller
@@ -35,14 +39,23 @@ public class FinalPanel extends JPanel
 		listener = new MyKeyListener();
 		layout = new SpringLayout();
 		numberPanel = new JPanel(new GridLayout(4,4));
+		saveButton = new JButton("save");
+		loadButton = new JButton("load");
+		
 		setFocusable(true);
 
 		
 		addKeyListener(listener);
 		updateNumberPanel();
+		setUpListeners();
 		setupPanel();
 		setupLayout();
 		
+	}
+	private void setUpListeners()
+	{
+		saveButton.addActionListener(click -> app.saveData());
+		loadButton.addActionListener(click -> app.loadData());
 	}
 	/**
 	 * sets up panel
@@ -52,6 +65,9 @@ public class FinalPanel extends JPanel
 		this.setBackground(new Color(200, 150, 50 ));
 		this.setLayout(layout);
 		this.add(numberPanel);
+		this.add(saveButton);
+		this.add(loadButton);
+	
 	}
 	
 	/**
@@ -59,10 +75,18 @@ public class FinalPanel extends JPanel
 	 */
 	private void setupLayout()
 	{
-		layout.putConstraint(SpringLayout.NORTH, numberPanel, 50, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.NORTH, numberPanel, 10, SpringLayout.NORTH, this);
 		layout.putConstraint(SpringLayout.WEST, numberPanel, 10, SpringLayout.WEST, this);
 		layout.putConstraint(SpringLayout.SOUTH, numberPanel, -10, SpringLayout.SOUTH, this);
 		layout.putConstraint(SpringLayout.EAST, numberPanel, -200, SpringLayout.EAST, this);
+		layout.putConstraint(SpringLayout.NORTH, saveButton, 10, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.WEST, saveButton, 10, SpringLayout.EAST, numberPanel);
+		layout.putConstraint(SpringLayout.EAST, saveButton, -10, SpringLayout.EAST, this);
+		layout.putConstraint(SpringLayout.SOUTH, saveButton, -275, SpringLayout.SOUTH, numberPanel);
+		layout.putConstraint(SpringLayout.NORTH, loadButton, 10, SpringLayout.SOUTH, saveButton);
+		layout.putConstraint(SpringLayout.WEST, loadButton, 10, SpringLayout.EAST, numberPanel);
+		layout.putConstraint(SpringLayout.SOUTH, loadButton, 0, SpringLayout.SOUTH, numberPanel);
+		layout.putConstraint(SpringLayout.EAST, loadButton, -10, SpringLayout.EAST, this);
 	}
 	
 	/**

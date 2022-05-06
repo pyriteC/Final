@@ -1,12 +1,24 @@
 package fin.controller;
 
 import java.awt.Color;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import fin.model.Cell;
 import fin.view.FinalFrame;
 
+
+
 public class Controller
 {
+	private static String dataFile;
+
 	/** a 2D array of Cell objects used to store the information of where the numbers are */
 	private Cell [][] cells =  new Cell[4][4];
 	
@@ -26,6 +38,7 @@ public class Controller
 				cells[index][inIndex] = temp;
 			}
 		}
+		dataFile = new String("save.Cell");
 		setFinalFrame(new FinalFrame(this));
 	}
 	
@@ -174,6 +187,10 @@ public class Controller
 		return numFromCells;
 	}
 	
+	/**
+	 * grabs the colors of the cells array
+	 * @return the 2D array of the colors 
+	 */
 	public Color[][] getColors()
 	{
 		Color[][] colorFromCells = new Color[4][4];
@@ -202,6 +219,59 @@ public class Controller
 			System.out.print("\n");
 		}
 	}
+	
+	/**
+	 * saves the data 
+	 */
+	public void saveData()
+	{
+		try(FileOutputStream outputStream = new FileOutputStream(dataFile);
+			ObjectOutputStream output = new ObjectOutputStream(outputStream))	
+		{
+			for (int row = 0; row< cells.length; row++)
+			{
+				for(int col = 0; col < cells.length; col++)
+				{
+					output.writeObject(cells[row][col]);
+				}
+			}
+			
+		}
+		catch (IOException fileError)
+		{
+			JOptionPane.showMessageDialog(finalFrame, fileError.getMessage(), "SavingError!!!", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public  void loadData()
+	{
+		cells = null;
+		
+		try (FileInputStream inputStream = new FileInputStream(dataFile);
+				ObjectInputStream input = new ObjectInputStream(inputStream))
+		{
+			for (int index = 0; index < cells.length; index++)
+			{
+				for (int inIndex = 0; inIndex < cells[0].length; inIndex++)
+				{
+					Cell temp = new Cell();
+					cells[index][inIndex] = temp;
+				}
+			}
+			cells =  (Cell[][]) input.readObject();
+		}
+		catch (IOException fileError)
+		{
+			JOptionPane.showMessageDialog(finalFrame, fileError.getMessage(), "Could not read file!", JOptionPane.ERROR_MESSAGE);
+		}
+		catch (ClassNotFoundException classError)
+		{
+			JOptionPane.showMessageDialog(finalFrame, classError.getMessage(), "Incorrect class type!!", JOptionPane.ERROR_MESSAGE);
+		}
+		
+
+	}
+	
 
 	public FinalFrame getFinalFrame()
 	{

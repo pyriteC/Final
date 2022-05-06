@@ -1,9 +1,10 @@
 package fin.model;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Cell
+public class Cell implements Serializable
 {
 	/** the number for the cell*/
 	private int number ;
