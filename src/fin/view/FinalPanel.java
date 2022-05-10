@@ -52,6 +52,10 @@ public class FinalPanel extends JPanel
 		setupLayout();
 		
 	}
+	
+	/** 
+	 * sets up listeners 
+	 */
 	private void setUpListeners()
 	{
 		saveButton.addActionListener(click -> app.saveData());

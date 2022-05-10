@@ -1,12 +1,15 @@
 package fin.controller;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -25,6 +28,9 @@ public class Controller
 	/** the frame */
 	private FinalFrame finalFrame;
 	
+	/* keeps the score */
+	private int score ;
+	
 	/**
 	 * fills all the cells of cells and initializes the frame
 	 */
@@ -40,6 +46,7 @@ public class Controller
 		}
 		dataFile = new String("save.Cell");
 		setFinalFrame(new FinalFrame(this));
+		setScore(0);
 	}
 	
 	/**
@@ -64,6 +71,7 @@ public class Controller
 					if ( top > 0 && cells[top - 1][col].getNumber() == currentNumber)
 					{
 						cells[top-1][col].setNumber(currentNumber * 2);
+						setScore(getScore() + currentNumber *2);
 					}
 					else 
 					{
@@ -93,6 +101,7 @@ public class Controller
 					if (bottom <cells.length-1 && cells[bottom + 1] [col].getNumber() == currentNumber)
 					{
 						cells[bottom +1][col].setNumber(currentNumber * 2);
+						setScore(getScore() + currentNumber *2);
 					}
 					else 
 					{
@@ -124,6 +133,7 @@ public class Controller
 					if (LEdge > 0 && cells[row][LEdge -1].getNumber() == currentNumber)
 					{
 						cells[row][LEdge -1].setNumber(currentNumber * 2);
+						setScore(getScore() + currentNumber *2);
 					}
 					else
 					{
@@ -154,6 +164,7 @@ public class Controller
 					if (REdge <cells.length-1 && cells[row][REdge + 1].getNumber() == currentNumber)
 					{
 						cells[row][REdge + 1].setNumber(currentNumber * 2);
+						setScore(getScore() + currentNumber *2);
 					}
 					else 
 					{
@@ -225,16 +236,9 @@ public class Controller
 	 */
 	public void saveData()
 	{
-		try(FileOutputStream outputStream = new FileOutputStream(dataFile);
-			ObjectOutputStream output = new ObjectOutputStream(outputStream))	
+		try(PrintWriter saveText = new PrintWriter(dataFile))	
 		{
-			for (int row = 0; row< cells.length; row++)
-			{
-				for(int col = 0; col < cells.length; col++)
-				{
-					output.writeObject(cells[row][col]);
-				}
-			}
+			saveText.println(score); 
 			
 		}
 		catch (IOException fileError)
@@ -245,29 +249,22 @@ public class Controller
 	
 	public  void loadData()
 	{
-		cells = null;
-		
-		try (FileInputStream inputStream = new FileInputStream(dataFile);
-				ObjectInputStream input = new ObjectInputStream(inputStream))
-		{
-			for (int index = 0; index < cells.length; index++)
-			{
-				for (int inIndex = 0; inIndex < cells[0].length; inIndex++)
-				{
-					Cell temp = new Cell();
-					cells[index][inIndex] = temp;
-				}
-			}
-			cells =  (Cell[][]) input.readObject();
-		}
-		catch (IOException fileError)
-		{
-			JOptionPane.showMessageDialog(finalFrame, fileError.getMessage(), "Could not read file!", JOptionPane.ERROR_MESSAGE);
-		}
-		catch (ClassNotFoundException classError)
-		{
-			JOptionPane.showMessageDialog(finalFrame, classError.getMessage(), "Incorrect class type!!", JOptionPane.ERROR_MESSAGE);
-		}
+		File source = new File(dataFile);
+		try (Scanner fileScanner = new Scanner(source))
+ 		{
+ 			
+ 			JOptionPane.showMessageDialog(finalFrame, "the prevous saved score was " + fileScanner.nextLine());
+ 			
+ 		}
+ 		catch (IOException fileError)
+ 		{
+ 			JOptionPane.showMessageDialog(finalFrame, fileError.getMessage(), "Loading Error!!!", JOptionPane.ERROR_MESSAGE);
+ 		}
+ 		catch (Exception error)
+ 		{
+ 			JOptionPane.showMessageDialog(finalFrame, error.getMessage(), "SavingError!!!", JOptionPane.ERROR_MESSAGE);
+ 		}
+ 		
 		
 
 	}
@@ -281,5 +278,15 @@ public class Controller
 	public void setFinalFrame(FinalFrame finalFrame)
 	{
 		this.finalFrame = finalFrame;
+	}
+
+	public int getScore()
+	{
+		return score;
+	}
+
+	public void setScore(int score)
+	{
+		this.score = score;
 	}
 }
