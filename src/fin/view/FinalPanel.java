@@ -58,8 +58,8 @@ public class FinalPanel extends JPanel
 	 */
 	private void setUpListeners()
 	{
-		saveButton.addActionListener(click -> app.saveData());
-		loadButton.addActionListener(click -> app.loadData());
+		saveButton.addActionListener(click -> resetFocus(1));
+		loadButton.addActionListener(click -> resetFocus(2));
 	}
 	/**
 	 * sets up panel
@@ -72,6 +72,19 @@ public class FinalPanel extends JPanel
 		this.add(saveButton);
 		this.add(loadButton);
 	
+	}
+	
+	private void resetFocus(int option)
+	{
+		if (option == 1)
+		{
+			app.saveData();
+		}
+		else if(option ==2)
+		{
+			app.loadData();
+		}
+		this.grabFocus();
 	}
 	
 	/**
@@ -109,10 +122,15 @@ public class FinalPanel extends JPanel
 			for(int col = 0; col < cells.length; col++)
 			{
 				JButton temp = new JButton(cellNumbs[row][col]);
+				temp.setEnabled(false);
 				temp.setOpaque(true);
 				temp.setBackground(cellColors[row][col]);
+				temp.setBorderPainted(false);
+				temp.setForeground(Color.black);
+
 				//cells[row][col] = temp;
 				numberPanel.add(temp);
+			
 				
 				
 			}

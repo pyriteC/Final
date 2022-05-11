@@ -20,6 +20,9 @@ import fin.view.FinalFrame;
 
 public class Controller
 {
+	/** 
+	 * the file that is saved to 
+	 */
 	private static String dataFile;
 
 	/** a 2D array of Cell objects used to store the information of where the numbers are */
@@ -49,9 +52,6 @@ public class Controller
 		setScore(0);
 	}
 	
-	/**
-	 * does mostly nothing but the runner needs it so it shall stay 
-	 */
 
 	/**
 	 * is called when the up button is pressed. it moves all the numbers in the cells to the top and combines like numbers. it also randomly places numbers in the empty cells.
@@ -247,6 +247,9 @@ public class Controller
 		}
 	}
 	
+	/**
+	 * loads the score 
+	 */
 	public  void loadData()
 	{
 		File source = new File(dataFile);

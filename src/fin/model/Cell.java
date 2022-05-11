@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 public class Cell implements Serializable
 {
+	private Color puple = new Color(230,230,250);
 	/** the number for the cell*/
 	private int number ;
 	/** the color for the cell that is gotten from the number*/
@@ -19,7 +20,7 @@ public class Cell implements Serializable
 		number = 0;
 		color = new HashMap<Integer,Color>();
 		color.put(0,Color.white);
-		color.put(2,Color.white);
+		color.put(2,puple);
 		color.put(4,Color.yellow);
 		color.put(8,Color.orange);
 		color.put(16,Color.red);
